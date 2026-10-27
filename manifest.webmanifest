@@ -1,0 +1,14 @@
+{
+  "name": "CLF-C02 en 7 jours",
+  "short_name": "CLF-C02",
+  "description": "Préparer l'AWS Certified Cloud Practitioner en 7 jours.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#141414",
+  "theme_color": "#141414",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
