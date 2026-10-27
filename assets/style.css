@@ -180,6 +180,7 @@ svg.dia .mo{font-family:var(--font-ui);font-size:11px}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.ghost:hover{background:var(--hover)}
 .btn.danger{background:transparent;color:var(--bad);border-color:color-mix(in srgb,var(--bad) 45%,transparent)}
+.date{font:inherit;font-size:var(--t-sm);background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:var(--r2);padding:7px 10px;color-scheme:dark}
 .btn:disabled{opacity:.35;cursor:not-allowed}
 .btn kbd,.kbd{font-family:var(--font-ui);font-size:10.5px;padding:1px 5px;border-radius:3px;border:1px solid currentColor;opacity:.55}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}

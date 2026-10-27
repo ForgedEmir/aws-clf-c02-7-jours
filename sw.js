@@ -1,5 +1,5 @@
 /* Cache hors ligne. Change VERSION à chaque mise à jour du contenu pour forcer le rafraîchissement. */
-const VERSION = "clf-c02-v1";
+const VERSION = "clf-c02-v2";
 const FILES = ["./", "index.html", "manifest.webmanifest", "assets/style.css", "assets/app.js", "assets/icon.svg", "data/days.js", "data/questions.js", "data/cards.js"];
 
 self.addEventListener("install", e => {

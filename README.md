@@ -50,7 +50,7 @@ Raccourcis clavier : `1` à `5` pour répondre, `Entrée` pour valider, `←` `�
 
 ## IV. La progression
 
-Tout reste dans ton navigateur (`localStorage`) : tâches cochées, scores, erreurs, boîtes des fiches, historique des examens blancs. La page Progrès affiche ta réussite par domaine et permet d'exporter ou d'importer un fichier de sauvegarde pour changer d'appareil.
+Tout reste dans ton navigateur (`localStorage`) : tâches cochées, scores, erreurs, boîtes des fiches, historique des examens blancs. Le jour 1 est le jour de ta première visite, et tu peux le déplacer dans Ressources (aujourd'hui, demain ou une date au choix). La page Progrès affiche ta réussite par domaine et permet d'exporter ou d'importer un fichier de sauvegarde pour changer d'appareil.
 
 ## V. Les questions
 

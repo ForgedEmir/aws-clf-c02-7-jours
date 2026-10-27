@@ -19,16 +19,6 @@ const MOCK_N = { 1: 16, 2: 19, 3: 22, 4: 8 };  // 65 questions, répartition off
 const MOCK_MIN = 90;
 const REPO = "https://github.com/ForgedEmir/aws-clf-c02-7-jours";
 
-/* ---------- Progression ---------- */
-const KEY = "clf-c02-7j";
-const fresh = () => ({ v: 1, start: "2026-10-27", checks: {}, best: {}, wrong: [], mocks: [], seen: {}, cards: {}, days: [], mock: null, match: { rounds: 0, perfect: 0 } });
-let S = load();
-function load() {
-  try { const r = localStorage.getItem(KEY); if (r) return Object.assign(fresh(), JSON.parse(r)); } catch (e) {}
-  return fresh();
-}
-function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
-
 /* ---------- Dates ---------- */
 const iso = d => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
 const today = () => iso(new Date());
@@ -37,6 +27,23 @@ function addDays(s, k) { const [y, m, d] = s.split("-").map(Number); return iso(
 function todayN() { const t = new Date(); t.setHours(0, 0, 0, 0); return Math.round((t - dateOf(1)) / 864e5) + 1; }
 const fmt = (d, o) => d.toLocaleDateString("fr-FR", o);
 function touch() { const t = today(); if (!S.days.includes(t)) S.days.push(t); }
+
+/* ---------- Progression ---------- */
+const KEY = "clf-c02-7j";
+/* Le jour 1 est le jour de la première visite, jamais avant la date de lancement (modifiable dans Ressources). */
+const LAUNCH = "2026-10-28";
+const fresh = () => ({ v: 2, start: today() > LAUNCH ? today() : LAUNCH, checks: {}, best: {}, wrong: [], mocks: [], seen: {}, cards: {}, days: [], mock: null, match: { rounds: 0, perfect: 0 } });
+let S = load();
+function load() {
+  try {
+    const r = localStorage.getItem(KEY);
+    if (r) { const s = Object.assign(fresh(), JSON.parse(r)); if (s.v < 2) { if (s.start === "2026-10-27") s.start = LAUNCH; s.v = 2; } return s; }
+  } catch (e) {}
+  const s = fresh();
+  try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {}
+  return s;
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
 
 /* ---------- Outils ---------- */
 const $ = s => document.querySelector(s);
@@ -117,7 +124,7 @@ function vProgramme() {
   return `<header class="head"><p class="eyebrow">AWS Certified Cloud Practitioner · CLF-C02</p><h1>Le Cloud Practitioner en 7 jours</h1>
   <p class="lede">Un domaine par jour, expliqué en schémas. Puis des quiz un peu plus durs que l’examen, des fiches à répétition espacée et un examen blanc chronométré.</p>
   <div class="facts"><span class="pill"><b>${left}</b> ${left > 1 ? "jours" : "jour"} avant l’examen conseillé (${fmt(dateOf(8), { weekday: "short", day: "numeric", month: "short" })})</span><span class="pill"><b>${Q.length}</b> questions</span><span class="pill"><b>${CARDS.length}</b> fiches</span></div></header>
-  <section class="card"><div class="between"><div style="min-width:0">${now}</div>${t >= 1 && t <= 7 ? `<a class="btn" href="#j${cur}">Ouvrir le jour ${cur}</a>` : `<a class="btn" href="#examen">Examen blanc</a>`}</div></section>
+  <section class="card"><div class="between"><div style="min-width:0">${now}</div>${t > 7 ? `<a class="btn" href="#examen">Examen blanc</a>` : `<a class="btn" href="#j${cur}">${t < 1 ? "Voir" : "Ouvrir"} le jour ${cur}</a>`}</div></section>
   <section class="card"><h3>Les 7 jours</h3><p class="sub">Un jour est marqué fait quand toutes ses tâches sont cochées ou que son quiz atteint 80 %.</p><div class="days">${rows}</div></section>
   <section class="card"><h3>L’examen</h3><p class="sub">65 questions dont 50 notées, 90 minutes, réussite à 700 sur 1000, 100 $. Disponible en français. Une mauvaise réponse ne retire pas de points.</p><div class="bars">${domBars}</div></section>
   <section class="card"><h3>Quatre façons de s’entraîner</h3><div class="grid" style="margin-top:12px">
@@ -438,7 +445,7 @@ function vRes() {
   return `<header class="head"><p class="eyebrow">À côté du programme</p><h1>Ressources</h1></header>
   <section class="card"><div class="links">${L.map(l => `<a href="${l[0]}" target="_blank" rel="noopener"><b>${l[1]} ↗</b><p>${l[2]}</p><span class="u">${l[0].replace(/^https:\/\//, "").split("/")[0]}</span></a>`).join("")}</div>
   <p class="note" style="margin-top:16px">Les sites qui publient de « vraies » questions d’examen (dumps) vont contre l’accord de certification AWS, qui peut annuler une certification pour ça. Les questions de ce site sont originales et écrites à partir du guide officiel.</p></section>
-  <section class="card"><h3>Recommencer le programme</h3><p class="sub">Le jour 1 est fixé au ${fmt(dateOf(1), { weekday: "long", day: "numeric", month: "long" })}. Tu peux le décaler à aujourd’hui sans perdre tes scores.</p><button class="btn ghost" data-act="restart">Faire commencer le jour 1 aujourd’hui</button></section>
+  <section class="card"><h3>Date de début</h3><p class="sub">Le jour 1 est fixé au ${fmt(dateOf(1), { weekday: "long", day: "numeric", month: "long" })}. Tu peux le déplacer sans perdre tes scores.</p><div class="row"><button class="btn ghost" data-act="start-at" data-n="0">Aujourd’hui</button><button class="btn ghost" data-act="start-at" data-n="1">Demain</button><input class="date" type="date" id="start-date" value="${S.start}" aria-label="Date du jour 1"></div></section>
   <section class="card"><h3>Installer l’application</h3><p class="sub">Le site fonctionne hors ligne après une première visite. Sur téléphone : menu du navigateur, « Ajouter à l’écran d’accueil ». Sur ordinateur : icône d’installation dans la barre d’adresse de Chrome ou Edge.</p></section>`;
 }
 
@@ -487,10 +494,16 @@ document.addEventListener("click", e => {
     case "reset-ask": UI.resetAsk = true; render(); break;
     case "reset-no": UI.resetAsk = false; render(); break;
     case "reset-yes": S = fresh(); save(); UI.resetAsk = false; render(); toast("Progression effacée"); break;
-    case "restart": S.start = today(); save(); render(); toast("Le jour 1 commence aujourd’hui"); break;
+    case "start-at": setStart(addDays(today(), n)); break;
   }
 });
+function setStart(d) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return;
+  S.start = d; save(); render();
+  toast("Jour 1 : " + fmt(dateOf(1), { weekday: "long", day: "numeric", month: "long" }));
+}
 document.addEventListener("change", e => {
+  if (e.target.id === "start-date") { setStart(e.target.value); return; }
   const c = e.target.closest("[data-ck]");
   if (c) { if (c.checked) S.checks[c.dataset.ck] = true; else delete S.checks[c.dataset.ck]; touch(); save(); renderSide(); return; }
   if (e.target.id === "imp" && e.target.files[0]) importData(e.target.files[0]);
