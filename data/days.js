@@ -14,29 +14,19 @@ window.DAYS=[
  <div class="tile"><p class="k">monde</p><b>Global en minutes</b><p>Tu déploies dans plusieurs Régions du monde en quelques clics.</p></div>
 </div></section>
 
-<section class="card"><h3>L’infrastructure mondiale AWS</h3><p class="sub">Région ⊃ zones de disponibilité (AZ) ⊃ datacenters. À droite, ce qui vit en dehors des Régions.</p>
-<div class="dia-wrap"><svg class="dia" viewBox="0 0 690 300" role="img" aria-label="Une Région contient au moins trois zones de disponibilité, chacune avec des datacenters">
- <rect class="sv-a" x="8" y="8" width="452" height="284" rx="14"/>
- <text class="sv-t b" x="24" y="34">Région AWS · ex. eu-west-3 (Paris)</text>
- <text class="sv-m sm" x="24" y="52">Zone géographique isolée : tes données y restent sauf si tu les déplaces</text>
- <rect class="sv-b" x="24" y="68" width="130" height="190" rx="10"/><text class="sv-t b" x="38" y="90">AZ A</text>
- <rect class="sv-w" x="38" y="102" width="102" height="62" rx="6"/><text class="sv-t sm" x="89" y="138" text-anchor="middle">Datacenter</text>
- <rect class="sv-w" x="38" y="176" width="102" height="62" rx="6"/><text class="sv-t sm" x="89" y="212" text-anchor="middle">Datacenter</text>
- <rect class="sv-b" x="170" y="68" width="130" height="190" rx="10"/><text class="sv-t b" x="184" y="90">AZ B</text>
- <rect class="sv-w" x="184" y="102" width="102" height="62" rx="6"/><text class="sv-t sm" x="235" y="138" text-anchor="middle">Datacenter</text>
- <rect class="sv-w" x="184" y="176" width="102" height="62" rx="6"/><text class="sv-t sm" x="235" y="212" text-anchor="middle">Datacenter</text>
- <rect class="sv-b" x="316" y="68" width="130" height="190" rx="10"/><text class="sv-t b" x="330" y="90">AZ C</text>
- <rect class="sv-w" x="330" y="102" width="102" height="62" rx="6"/><text class="sv-t sm" x="381" y="138" text-anchor="middle">Datacenter</text>
- <rect class="sv-w" x="330" y="176" width="102" height="62" rx="6"/><text class="sv-t sm" x="381" y="212" text-anchor="middle">Datacenter</text>
- <line class="sv-l" x1="154" y1="160" x2="170" y2="160"/><line class="sv-l" x1="300" y1="160" x2="316" y2="160"/>
- <text class="sv-m sm" x="24" y="280">Au moins 3 AZ par Région, isolées, reliées par fibre privée à faible latence</text>
- <text class="sv-t b" x="482" y="34">Hors des Régions</text>
- <circle class="sv-af" cx="492" cy="72" r="7"/><text class="sv-t b" x="508" y="76">Edge locations</text><text class="sv-m sm" x="508" y="93">Des centaines · CloudFront, Route 53</text>
- <circle cx="492" cy="132" r="7" fill="var(--ok)" style="fill:var(--ok)"/><text class="sv-t b" x="508" y="136">Local Zones</text><text class="sv-m sm" x="508" y="153">AWS au plus près d’une grande ville</text>
- <circle cx="492" cy="192" r="7" style="fill:var(--amber)"/><text class="sv-t b" x="508" y="196">Wavelength</text><text class="sv-m sm" x="508" y="213">Dans le réseau 5G d’un opérateur</text>
- <circle cx="492" cy="252" r="7" style="fill:var(--muted)"/><text class="sv-t b" x="508" y="256">Outposts</text><text class="sv-m sm" x="508" y="273">Racks AWS dans TON datacenter</text>
-</svg></div>
-<div class="legend"><span>Panne d’un datacenter → <b>multi-AZ</b></span><span>Panne d’une Région ou catastrophe → <b>multi-Région</b></span><span>Choisir une Région : conformité, latence, services dispo, prix</span></div>
+<section class="card"><h3>L’économie du cloud</h3><p class="sub">Le guide officiel insiste sur ces notions : coûts fixes ou variables, licences, bonne taille, automatisation.</p>
+<div class="grid">
+ <div class="tile"><p class="k">sur site</p><b>Coûts fixes</b><p>Serveurs achetés d’avance, datacenter, électricité, clim, personnel, même quand rien ne tourne.</p></div>
+ <div class="tile"><p class="k">cloud</p><b>Coûts variables</b><p>Tu paies à l’usage et tu éteins ce qui ne sert pas. Le TCO (coût total de possession) compare les deux.</p></div>
+ <div class="tile"><p class="k">licences</p><b>BYOL ou licence incluse</b><p>BYOL : tu réutilises tes licences (souvent sur Dedicated Hosts). Licence incluse : le prix de l’instance la contient.</p></div>
+ <div class="tile"><p class="k">taille</p><b>Rightsizing</b><p>Choisir la plus petite ressource qui tient la charge réelle. Outil : Compute Optimizer.</p></div>
+ <div class="tile"><p class="k">automatiser</p><b>Moins d’erreurs, plus vite</b><p>IaC, Auto Scaling, sauvegardes planifiées : moins de travail manuel, des déploiements reproductibles.</p></div>
+ <div class="tile"><p class="k">volume</p><b>Économies d’échelle</b><p>AWS achète en masse et baisse ses prix : tu en profites sans rien faire.</p></div>
+</div></section>
+
+<section class="card"><h3>L’infrastructure mondiale AWS</h3><p class="sub">Région ⊃ zones de disponibilité (AZ) ⊃ datacenters. Le deuxième onglet montre ce qui vit en dehors des Régions.</p>
+<div class="viz" data-viz="global-infra"></div>
+<div class="legend"><span>Les AZ ne partagent <b>aucun point de panne unique</b></span><span>Panne d’un datacenter → <b>multi-AZ</b></span><span>Catastrophe régionale, latence mondiale, souveraineté → <b>multi-Région</b></span><span>Choisir une Région : conformité, latence, services dispo, prix</span></div>
 </section>
 
 <section class="card"><h3>Qui gère quoi : sur site, IaaS, PaaS, SaaS</h3><p class="sub">Plus tu vas vers la droite, plus AWS gère à ta place.</p>
@@ -84,7 +74,7 @@ window.DAYS=[
  <div class="tile"><p class="k">côté technique</p><b>Security</b><p>Identités, détection, protection des données.</p></div>
  <div class="tile"><p class="k">côté technique</p><b>Operations</b><p>Surveillance, incidents, disponibilité au quotidien.</p></div>
 </div>
-<p class="note" style="margin-top:10px">Les 4 phases du CAF : <b>Envision → Align → Launch → Scale</b>.</p>
+<p class="note" style="margin-top:10px">Les 4 phases du CAF : <b>Envision → Align → Launch → Scale</b>. Les 4 bénéfices annoncés : <b>moins de risque métier</b>, <b>meilleure performance ESG</b> (environnement, social, gouvernance), <b>plus de chiffre d’affaires</b>, <b>plus d’efficacité opérationnelle</b>.</p>
 </section>
 
 <section class="card"><h3>Les 7 R de la migration</h3><p class="sub">Classés de l’effort le plus faible au plus fort.</p>
@@ -97,22 +87,23 @@ window.DAYS=[
  <div class="bar"><span><b>Replatform</b></span><div class="tr"><div class="fl w" style="width:58%"></div></div><span class="v">→ service managé</span></div>
  <div class="bar"><span><b>Refactor</b></span><div class="tr"><div class="fl w" style="width:100%"></div></div><span class="v">réécrire (cloud natif)</span></div>
 </div>
-<p class="note" style="margin-top:10px">Outils : <b>Migration Hub</b> (suivi), <b>Application Discovery Service</b> (inventaire), <b>Application Migration Service</b> (rehost), <b>DMS</b> (bases de données), <b>Snow Family</b> (transfert physique).</p>
+<p class="note" style="margin-top:10px">Outils : <b>Migration Evaluator</b> (étude de coûts avant de migrer), <b>Application Discovery Service</b> (inventaire), <b>Migration Hub</b> (suivi), <b>Application Migration Service</b> (rehost), <b>DMS</b> (bases, réplication continue) et <b>SCT</b> (conversion de schéma entre moteurs).</p>
 </section>`,
- traps:["« Économies d’échelle » ≠ « dépense variable ». Payer à l’usage = dépense variable ; prix bas grâce au volume = économies d’échelle.","Survivre à la panne d’un datacenter = multi-AZ, pas multi-Région (plus cher et pas nécessaire).","Le pilier Durabilité parle d’environnement. L’optimisation des coûts parle d’argent.","Replatform garde le code mais change la plateforme (ex. Oracle sur serveur → RDS). Refactor réécrit l’application."]},
+ traps:["« Économies d’échelle » ≠ « dépense variable ». Payer à l’usage = dépense variable ; prix bas grâce au volume = économies d’échelle.","Survivre à la panne d’un datacenter = multi-AZ, pas multi-Région (plus cher et pas nécessaire).","Le pilier Durabilité parle d’environnement. L’optimisation des coûts parle d’argent.","Replatform garde le code mais change la plateforme (ex. Oracle sur serveur → RDS). Refactor réécrit l’application.","Les 4 bénéfices du CAF : risque métier réduit, performance ESG, revenus, efficacité opérationnelle. Jamais « plus de responsabilité de sécurité pour AWS »."]},
 
 {n:2,short:"Responsabilité & IAM",title:"Responsabilité partagée et identités (IAM)",dom:2,time:"≈ 4 h",
  lede:"Qui sécurise quoi entre toi et AWS, puis comment donner exactement les bons accès : utilisateurs, groupes, rôles, politiques, Organizations.",
  steps:[["Lire la leçon : dessine le schéma de responsabilité partagée de mémoire","50 min"],["Cloud Quest : mission sur IAM / sécurité","60 min"],["Synthèse GitHub : Security & Compliance (partie IAM)","30 min"],["Quiz du jour, viser 80 % ou plus","30 min"],["Refaire les erreurs du jour 1 (onglet Erreurs)","20 min"]],
  lesson:`
 <section class="card"><h3>Le modèle de responsabilité partagée</h3><p class="sub">AWS sécurise le cloud. Toi, tu sécurises ce que tu mets dedans.</p>
+<div class="viz" data-viz="shared-responsibility"></div>
 <div class="stack" style="gap:8px">
  <div class="tile w"><p class="k">client · sécurité DANS le cloud</p>
   <div class="grid" style="margin-top:6px"><div><b>Données clients</b><p>Classification, chiffrement côté client ou serveur</p></div><div><b>IAM</b><p>Utilisateurs, rôles, MFA, permissions</p></div><div><b>OS invité et applis</b><p>Patchs de l’OS sur EC2, pare-feu, security groups</p></div><div><b>Réseau</b><p>Configuration du trafic, chiffrement en transit</p></div></div></div>
  <div class="tile" style="background:var(--accent-soft);border-color:var(--accent)"><p class="k">AWS · sécurité DU cloud</p>
   <div class="grid" style="margin-top:6px"><div><b>Logiciel</b><p>Compute, stockage, bases, réseau</p></div><div><b>Hyperviseur</b><p>Virtualisation des serveurs</p></div><div><b>Matériel</b><p>Régions, AZ, edge locations</p></div><div><b>Physique</b><p>Gardes, accès aux bâtiments, destruction des disques</p></div></div></div>
 </div>
-<p class="note" style="margin-top:10px">Contrôles <b>partagés</b> : gestion des correctifs, gestion de la configuration, formation et sensibilisation. Chacun s’en occupe pour sa propre couche.</p>
+<p class="note" style="margin-top:10px">Contrôles <b>partagés</b> : gestion des correctifs, gestion de la configuration, formation et sensibilisation. Chacun s’en occupe pour sa propre couche. Contrôles <b>hérités</b> : physiques et environnementaux, entièrement chez AWS.</p>
 </section>
 
 <section class="card"><h3>La ligne bouge selon le service</h3><p class="sub">Plus le service est managé, plus la part d’AWS monte.</p>
@@ -125,22 +116,7 @@ window.DAYS=[
 </table></div></section>
 
 <section class="card"><h3>IAM : qui a le droit de faire quoi</h3><p class="sub">Une personne = un utilisateur. Une équipe = un groupe. Un service AWS = un rôle. Les droits = une politique JSON.</p>
-<div class="dia-wrap"><svg class="dia" viewBox="0 0 680 230" role="img" aria-label="Utilisateurs dans un groupe auquel une politique est attachée ; une instance EC2 assume un rôle pour lire S3">
- <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="sv-ar" d="M0,0 L10,5 L0,10 z"/></marker></defs>
- <rect class="sv-w" x="20" y="22" width="110" height="38" rx="8"/><text class="sv-t" x="75" y="46" text-anchor="middle">Alice</text>
- <rect class="sv-w" x="20" y="72" width="110" height="38" rx="8"/><text class="sv-t" x="75" y="96" text-anchor="middle">Bob</text>
- <line class="sv-ln" x1="130" y1="41" x2="188" y2="62" marker-end="url(#ar)"/><line class="sv-ln" x1="130" y1="91" x2="188" y2="76" marker-end="url(#ar)"/>
- <rect class="sv-a" x="190" y="44" width="130" height="50" rx="8"/><text class="sv-t b" x="255" y="66" text-anchor="middle">Groupe « Devs »</text><text class="sv-m sm" x="255" y="83" text-anchor="middle">hérite des droits</text>
- <rect class="sv-s" x="380" y="20" width="280" height="96" rx="8"/><text class="sv-t b" x="396" y="42">Politique IAM (JSON)</text>
- <text class="sv-t mo" x="396" y="64">"Effect": "Allow",</text><text class="sv-t mo" x="396" y="82">"Action": "s3:GetObject",</text><text class="sv-t mo" x="396" y="100">"Resource": "arn:aws:s3:::photos/*"</text>
- <line class="sv-ln" x1="378" y1="69" x2="322" y2="69" marker-end="url(#ar)"/><text class="sv-m sm" x="350" y="62" text-anchor="middle">attachée</text>
- <rect class="sv-b" x="20" y="150" width="110" height="50" rx="8"/><text class="sv-t b" x="75" y="172" text-anchor="middle">Instance EC2</text><text class="sv-m sm" x="75" y="189" text-anchor="middle">ton appli</text>
- <line class="sv-ln" x1="130" y1="175" x2="188" y2="175" marker-end="url(#ar)"/><text class="sv-m sm" x="159" y="166" text-anchor="middle">assume</text>
- <rect class="sv-g" x="190" y="150" width="130" height="50" rx="8"/><text class="sv-t b" x="255" y="172" text-anchor="middle">Rôle IAM</text><text class="sv-m sm" x="255" y="189" text-anchor="middle">identifiants temporaires</text>
- <line class="sv-ln" x1="320" y1="175" x2="378" y2="175" marker-end="url(#ar)"/>
- <rect class="sv-b" x="380" y="150" width="130" height="50" rx="8"/><text class="sv-t b" x="445" y="180" text-anchor="middle">Bucket S3</text>
- <text class="sv-wt sm b" x="530" y="170">Aucune clé d’accès</text><text class="sv-wt sm b" x="530" y="186">dans le code</text>
-</svg></div>
+<div class="viz" data-viz="iam"></div>
 <div class="grid" style="margin-top:12px">
  <div class="tile"><b>Utilisateur root</b><p>Accès total. MFA, pas de clés d’accès, jamais au quotidien.</p></div>
  <div class="tile"><b>Moindre privilège</b><p>Uniquement les droits nécessaires. Par défaut : tout est refusé.</p></div>
@@ -150,6 +126,10 @@ window.DAYS=[
  <div class="tile"><b>Amazon Cognito</b><p>Connexion des CLIENTS de ton appli web ou mobile.</p></div>
  <div class="tile"><b>Credential report</b><p>CSV : tous les utilisateurs et l’état de leurs identifiants.</p></div>
  <div class="tile"><b>IAM Access Analyzer</b><p>Trouve les ressources partagées avec l’extérieur.</p></div>
+ <div class="tile"><b>Politiques gérées ou personnalisées</b><p>Gérées par AWS : prêtes à l’emploi. Gérées par le client : sur mesure et réutilisables. Inline : collées à une seule identité.</p></div>
+ <div class="tile"><b>Fédération</b><p>Les employés gardent leur annuaire (Active Directory, Okta) et reçoivent un accès temporaire à AWS.</p></div>
+ <div class="tile"><b>Rôle inter-comptes</b><p>Un utilisateur du compte A assume un rôle du compte B : aucun deuxième identifiant.</p></div>
+ <div class="tile"><b>Ranger les secrets</b><p>Secrets Manager (rotation auto) ou Systems Manager Parameter Store. Jamais dans le code.</p></div>
 </div></section>
 
 <section class="card"><h3>AWS Organizations : plusieurs comptes, une seule tête</h3><p class="sub">Les SCP fixent un plafond de permissions. Elles n’accordent rien, elles limitent, même l’admin d’un compte membre.</p>
@@ -180,13 +160,13 @@ window.DAYS=[
  <div class="tile"><p class="k">protéger</p><b>AWS WAF</b><p>Bloque injection SQL, XSS, bots (couche 7, HTTP).</p></div>
  <div class="tile"><p class="k">protéger</p><b>AWS Shield</b><p>Anti-DDoS. Standard gratuit pour tous, Advanced = équipe 24/7 + protection des coûts.</p></div>
  <div class="tile"><p class="k">protéger</p><b>Firewall Manager</b><p>Gère WAF, Shield et security groups sur toute l’organisation.</p></div>
- <div class="tile"><p class="k">protéger</p><b>Network Firewall</b><p>Pare-feu réseau managé pour tes VPC.</p></div>
+ <div class="tile"><p class="k">protéger</p><b>Produits tiers</b><p>Pare-feu, antivirus ou SIEM d’éditeurs tiers, achetés dans AWS Marketplace.</p></div>
  <div class="tile w"><p class="k">détecter</p><b>Amazon GuardDuty</b><p>Détection de menaces : lit CloudTrail, VPC Flow Logs, DNS. Sans agent.</p></div>
  <div class="tile w"><p class="k">détecter</p><b>Amazon Inspector</b><p>Scan de vulnérabilités (CVE) : EC2, images ECR, Lambda.</p></div>
  <div class="tile w"><p class="k">détecter</p><b>Amazon Macie</b><p>Trouve les données sensibles (PII, cartes) dans S3.</p></div>
- <div class="tile w"><p class="k">centraliser</p><b>AWS Security Hub</b><p>Tableau unique des alertes + contrôles de bonnes pratiques.</p></div>
+ <div class="tile w"><p class="k">centraliser</p><b>AWS Security Hub</b><p>Tableau unique des alertes + contrôles de bonnes pratiques (cette partie contrôles s’appelle désormais Security Hub CSPM).</p></div>
  <div class="tile"><p class="k">enquêter</p><b>Amazon Detective</b><p>Visualise les liens et trouve la cause racine d’une alerte.</p></div>
- <div class="tile"><p class="k">auditer</p><b>AWS Audit Manager</b><p>Collecte des preuves en continu pour TES audits.</p></div>
+ <div class="tile"><p class="k">auditer · hors liste 2026</p><b>AWS Audit Manager</b><p>Collecte des preuves en continu pour TES audits.</p></div>
  <div class="tile"><p class="k">auditer</p><b>AWS Artifact</b><p>Télécharge les rapports de conformité d’AWS.</p></div>
  <div class="tile"><p class="k">signaler</p><b>AWS Trust &amp; Safety</b><p>Signaler un abus venant de ressources AWS (spam, attaque).</p></div>
 </div></section>
@@ -198,20 +178,21 @@ window.DAYS=[
  <div class="tile"><p class="k">Amazon CloudWatch</p><p class="big">Ça tourne comment ?</p><p>Métriques, logs, alarmes, tableaux de bord. « CPU au-dessus de 80 % ? »</p></div>
 </div></section>
 
+<section class="card"><h3>Où trouver les journaux et la doc sécurité</h3><p class="sub">Le guide demande de savoir où sont capturés les journaux et où lire l’information de sécurité.</p>
+<div class="grid">
+ <div class="tile"><p class="k">journaux</p><b>CloudTrail</b><p>Appels API, livrés dans un bucket S3 ou dans CloudWatch Logs.</p></div>
+ <div class="tile"><p class="k">journaux</p><b>CloudWatch Logs</b><p>Logs des applis, des instances et de Lambda, avec recherche et alarmes.</p></div>
+ <div class="tile"><p class="k">journaux</p><b>VPC Flow Logs</b><p>Trafic IP accepté et refusé, vers CloudWatch Logs ou S3.</p></div>
+ <div class="tile"><p class="k">journaux</p><b>Logs d’accès</b><p>S3 et les load balancers peuvent journaliser chaque requête dans un bucket S3.</p></div>
+ <div class="tile w"><p class="k">doc</p><b>Security Center et Security Blog</b><p>Bonnes pratiques, bulletins et annonces de sécurité d’AWS.</p></div>
+ <div class="tile w"><p class="k">doc</p><b>Knowledge Center et re:Post</b><p>Réponses aux questions fréquentes, communauté et experts AWS.</p></div>
+ <div class="tile w"><p class="k">conformité</p><b>AWS Compliance</b><p>Programmes par pays et par secteur (RGPD, HIPAA, PCI DSS) et liste des services couverts par chacun.</p></div>
+ <div class="tile w"><p class="k">conformité</p><b>AWS Artifact</b><p>Les rapports et accords à télécharger pour ton auditeur.</p></div>
+</div></section>
+
 <section class="card"><h3>Où se place chaque protection</h3><p class="sub">Le trajet d’une requête depuis Internet jusqu’à ton serveur.</p>
-<div class="dia-wrap"><svg class="dia" viewBox="0 0 690 140" role="img" aria-label="Internet, Shield, CloudFront avec WAF, load balancer, EC2 avec security group">
- <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="sv-ar" d="M0,0 L10,5 L0,10 z"/></marker></defs>
- <rect class="sv-s" x="8" y="40" width="88" height="60" rx="8"/><text class="sv-t b" x="52" y="75" text-anchor="middle">Internet</text>
- <line class="sv-ln" x1="96" y1="70" x2="116" y2="70" marker-end="url(#ar2)"/>
- <rect class="sv-w" x="118" y="40" width="120" height="60" rx="8"/><text class="sv-t b" x="178" y="65" text-anchor="middle">AWS Shield</text><text class="sv-m sm" x="178" y="84" text-anchor="middle">DDoS couches 3-4</text>
- <line class="sv-ln" x1="238" y1="70" x2="258" y2="70" marker-end="url(#ar2)"/>
- <rect class="sv-a" x="260" y="40" width="140" height="60" rx="8"/><text class="sv-t b" x="330" y="65" text-anchor="middle">CloudFront + WAF</text><text class="sv-m sm" x="330" y="84" text-anchor="middle">filtre HTTP, couche 7</text>
- <line class="sv-ln" x1="400" y1="70" x2="420" y2="70" marker-end="url(#ar2)"/>
- <rect class="sv-b" x="422" y="40" width="108" height="60" rx="8"/><text class="sv-t b" x="476" y="65" text-anchor="middle">Load balancer</text><text class="sv-m sm" x="476" y="84" text-anchor="middle">certificat ACM</text>
- <line class="sv-ln" x1="530" y1="70" x2="550" y2="70" marker-end="url(#ar2)"/>
- <rect class="sv-g" x="552" y="40" width="130" height="60" rx="8"/><text class="sv-t b" x="617" y="65" text-anchor="middle">EC2</text><text class="sv-m sm" x="617" y="84" text-anchor="middle">security group : IP/port</text>
- <text class="sv-m sm" x="345" y="128" text-anchor="middle">GuardDuty surveille l’ensemble en arrière-plan, Inspector scanne l’instance</text>
-</svg></div></section>
+<div class="viz" data-viz="defense"></div>
+</section>
 
 <section class="card"><h3>Chiffrement et secrets</h3>
 <div class="grid">
@@ -221,7 +202,7 @@ window.DAYS=[
  <div class="tile"><p class="k">certificats</p><b>AWS Certificate Manager</b><p>Certificats SSL/TLS publics gratuits, renouvelés automatiquement.</p></div>
 </div>
 <div class="flow" style="margin-top:12px">
- <div class="st a"><b>Au repos</b><span>Données stockées : EBS, S3 (SSE), RDS chiffrés avec KMS</span></div>
+ <div class="st a"><b>Au repos</b><span>EBS et RDS chiffrés avec KMS. S3 chiffre tout nouvel objet par défaut (SSE-S3), ou avec tes clés KMS (SSE-KMS)</span></div>
  <div class="st a"><b>En transit</b><span>Données qui voyagent : HTTPS/TLS, VPN IPsec</span></div>
 </div></section>`,
  traps:["CloudTrail = qui a fait l’action. Config = état de la configuration. CloudWatch = performances et alarmes.","GuardDuty détecte des menaces dans les journaux. Inspector cherche des failles logicielles. Macie cherche des données sensibles dans S3.","Shield Standard est gratuit et activé pour tout le monde. Seul Advanced est payant.","Rotation automatique des mots de passe → Secrets Manager, pas Parameter Store ni KMS."]},
@@ -231,6 +212,7 @@ window.DAYS=[
  steps:[["Lire la leçon calcul + modes d’achat EC2","50 min"],["Dessiner le schéma VPC de mémoire (public, privé, NAT, IGW)","20 min"],["Cloud Quest : missions EC2 et réseau","75 min"],["Quiz du jour, viser 80 % ou plus","35 min"],["Refaire les erreurs accumulées","30 min"]],
  lesson:`
 <section class="card"><h3>Du serveur à la fonction</h3><p class="sub">Plus tu vas à droite, moins tu gères de choses, et moins tu as de contrôle.</p>
+<div class="viz" data-viz="compute"></div>
 <div class="spectrum"><div class="grad"></div><div class="ends"><span>plus de contrôle</span><span>moins de gestion</span></div>
 <div class="stops">
  <div><b>Amazon EC2</b>Serveur virtuel. Tu gères l’OS. IaaS.</div>
@@ -257,36 +239,18 @@ window.DAYS=[
  <div class="bar"><span><b>Spot</b></span><div class="tr"><div class="fl g" style="width:90%"></div></div><span class="v">≤ 90 %</span></div>
 </div>
 <div class="grid" style="margin-top:14px">
- <div class="tile"><b>On-Demand</b><p>Court, imprévisible, ne doit pas être interrompu. Aucun engagement.</p></div>
+ <div class="tile"><b>On-Demand</b><p>Court, imprévisible, ne doit pas être interrompu. Aucun engagement. Linux et Windows facturés à la seconde (60 s minimum).</p></div>
  <div class="tile"><b>Savings Plans</b><p>Engagement en $/heure sur 1 ou 3 ans. Compute = flexible (famille, Région, Fargate, Lambda).</p></div>
  <div class="tile"><b>Reserved Instances</b><p>1 ou 3 ans, charge stable. Plus tu paies d’avance (All Upfront), plus c’est bas.</p></div>
  <div class="tile"><b>Spot</b><p>Capacité inutilisée. Peut être reprise avec 2 min de préavis. Jobs interruptibles.</p></div>
  <div class="tile w"><b>Dedicated Hosts</b><p>Un serveur physique entier pour toi : licences BYOL par socket ou cœur.</p></div>
  <div class="tile w"><b>Dedicated Instances</b><p>Matériel non partagé, mais sans visibilité sur le serveur physique.</p></div>
+ <div class="tile w"><b>Capacity Reservations</b><p>Capacité On-Demand garantie dans une AZ, sans durée d’engagement. Payée même si elle reste vide.</p></div>
+ <div class="tile w"><b>Flexibilité des RI</b><p>Standard : la plus forte remise. Convertible : on peut changer de famille. Remises partagées entre les comptes d’une organisation.</p></div>
 </div></section>
 
 <section class="card"><h3>Le réseau : un VPC type</h3><p class="sub">Ton réseau privé dans une Région, réparti sur deux AZ pour la haute disponibilité.</p>
-<div class="dia-wrap"><svg class="dia" viewBox="0 0 700 380" role="img" aria-label="VPC avec sous-réseaux publics et privés sur deux zones, load balancer, NAT gateway et connexion vers le datacenter">
- <rect class="sv-w" x="8" y="140" width="94" height="96" rx="8"/><text class="sv-t b" x="55" y="182" text-anchor="middle"><tspan x="55">Ton</tspan><tspan x="55" dy="16">datacenter</tspan></text>
- <line class="sv-ln" x1="102" y1="170" x2="146" y2="170"/><text class="sv-t sm b" x="124" y="162" text-anchor="middle">DX</text>
- <line class="sv-l" x1="102" y1="212" x2="146" y2="212"/><text class="sv-t sm b" x="124" y="204" text-anchor="middle">VPN</text>
- <rect class="sv-l" x="128" y="8" width="564" height="364" rx="14"/><text class="sv-m sm" x="144" y="28">Région</text>
- <rect class="sv-b" x="146" y="48" width="532" height="310" rx="12"/><text class="sv-t b" x="162" y="72">VPC 10.0.0.0/16</text>
- <rect class="sv-a" x="350" y="34" width="150" height="28" rx="6"/><text class="sv-t sm b" x="425" y="53" text-anchor="middle">Internet gateway</text>
- <rect class="sv-l" x="162" y="84" width="248" height="262" rx="10"/><text class="sv-m sm" x="174" y="100">AZ A</text>
- <rect class="sv-l" x="418" y="84" width="248" height="262" rx="10"/><text class="sv-m sm" x="430" y="100">AZ B</text>
- <rect class="sv-g" x="174" y="108" width="224" height="98" rx="8"/><text class="sv-t sm b" x="186" y="126">Sous-réseau public</text>
- <rect class="sv-g" x="430" y="108" width="224" height="98" rx="8"/><text class="sv-t sm b" x="442" y="126">Sous-réseau public</text>
- <rect class="sv-af" x="232" y="136" width="380" height="28" rx="14"/><text class="sv-o sm b" x="422" y="155" text-anchor="middle">Application Load Balancer (sur les 2 AZ)</text>
- <rect class="sv-w" x="186" y="172" width="96" height="26" rx="6"/><text class="sv-t sm" x="234" y="189" text-anchor="middle">NAT gateway</text>
- <rect class="sv-s" x="174" y="218" width="224" height="116" rx="8"/><text class="sv-t sm b" x="186" y="236">Sous-réseau privé</text>
- <rect class="sv-s" x="430" y="218" width="224" height="116" rx="8"/><text class="sv-t sm b" x="442" y="236">Sous-réseau privé</text>
- <rect class="sv-w" x="194" y="252" width="84" height="40" rx="6"/><text class="sv-t sm b" x="236" y="276" text-anchor="middle">EC2</text>
- <rect class="sv-w" x="450" y="252" width="84" height="40" rx="6"/><text class="sv-t sm b" x="492" y="276" text-anchor="middle">EC2</text>
- <rect class="sv-a" x="552" y="252" width="84" height="40" rx="6"/><text class="sv-t sm b" x="594" y="276" text-anchor="middle">RDS</text>
- <rect x="188" y="246" width="96" height="52" rx="8" style="fill:none;stroke:var(--accent);stroke-width:1.3;stroke-dasharray:3 3"/>
- <text class="sv-m sm" x="194" y="316">pointillés = security group</text>
-</svg></div>
+<div class="viz" data-viz="vpc"></div>
 <div class="legend"><span><b>Public</b> = route vers l’Internet gateway</span><span><b>NAT gateway</b> = le privé sort sur Internet, personne n’entre</span><span><b>DX</b> = Direct Connect</span></div>
 <div class="tbl-wrap" style="margin-top:12px"><table class="m">
 <tr><th></th><th>Security group</th><th>Network ACL</th></tr>
@@ -306,22 +270,27 @@ window.DAYS=[
  <div class="tile"><p class="k">accélérer</p><b>Global Accelerator</b><p>2 IP statiques anycast, TCP/UDP, réseau AWS. Sans cache.</p></div>
  <div class="tile"><p class="k">API</p><b>API Gateway</b><p>Crée et expose des API REST ou WebSocket, souvent devant Lambda.</p></div>
  <div class="tile"><p class="k">haute dispo</p><b>ELB + Auto Scaling</b><p>Répartir le trafic sur plusieurs AZ + ajuster le nombre d’instances.</p></div>
+ <div class="tile"><p class="k">privé</p><b>PrivateLink · VPC endpoints</b><p>Atteindre S3 ou un service AWS ou partenaire depuis le VPC, sans passer par Internet.</p></div>
+ <div class="tile"><p class="k">télétravail</p><b>Client VPN</b><p>Les portables des employés se connectent au VPC par un VPN géré.</p></div>
+ <div class="tile"><p class="k">postes</p><b>WorkSpaces · AppStream 2.0 · Secure Browser</b><p>Bureau virtuel complet · une appli diffusée en streaming · un navigateur sécurisé pour les applis web internes.</p></div>
 </div></section>`,
- traps:["Interruptible et le moins cher → Spot. Ne doit pas être interrompu et court → On-Demand.","Licences par socket ou cœur → Dedicated Hosts, pas Dedicated Instances.","Security group = stateful, instance, allow seulement. NACL = stateless, sous-réseau, allow + deny.","CloudFront met en cache du contenu HTTP. Global Accelerator donne des IP statiques et accélère TCP/UDP, sans cache.","Connexion chiffrée dès aujourd’hui → VPN. Débit constant et privé → Direct Connect."]},
+ traps:["Interruptible et le moins cher → Spot. Ne doit pas être interrompu et court → On-Demand.","Licences par socket ou cœur → Dedicated Hosts, pas Dedicated Instances.","Security group = stateful, instance, allow seulement. NACL = stateless, sous-réseau, allow + deny.","CloudFront met en cache du contenu HTTP. Global Accelerator donne des IP statiques et accélère TCP/UDP, sans cache.","Connexion chiffrée dès aujourd’hui → VPN. Débit constant et privé → Direct Connect.","Atteindre S3 depuis un sous-réseau privé sans Internet → VPC endpoint, pas NAT gateway.","Capacité garantie sans engagement d’un an → Capacity Reservation, pas Reserved Instance."]},
 
 {n:5,short:"Stockage, bases, IA",title:"Stockage, bases de données, analytique et IA",dom:3,time:"≈ 5 h",
  lede:"Choisir le bon stockage et la bonne base selon la situation, puis reconnaître les services d’analytique, d’IA, d’intégration et de déploiement.",
  steps:[["Lire la leçon stockage + classes S3","40 min"],["Lire bases de données, analytique, IA","50 min"],["Cloud Quest : missions stockage et bases","60 min"],["Quiz du jour (le plus long), viser 80 % ou plus","40 min"],["Refaire les erreurs accumulées","30 min"]],
  lesson:`
 <section class="card"><h3>Trois façons de stocker</h3>
+<div class="viz" data-viz="storage"></div>
 <div class="triad">
  <div class="tile"><p class="k">bloc</p><p class="big">Amazon EBS</p><p>Un disque dur pour UNE instance EC2 (dans une AZ). Volume de démarrage. Persiste après l’arrêt. À l’opposé : l’instance store, éphémère.</p></div>
- <div class="tile"><p class="k">fichiers</p><p class="big">EFS / FSx</p><p>Système de fichiers partagé par des centaines d’instances. EFS = Linux multi-AZ. FSx = Windows (SMB), Lustre (calcul intensif).</p></div>
+ <div class="tile"><p class="k">fichiers</p><p class="big">EFS / FSx</p><p>Système de fichiers partagé par des centaines d’instances. EFS = Linux (NFS), multi-AZ. FSx = Windows File Server (SMB), NetApp ONTAP, OpenZFS. FSx for Lustre est hors programme.</p></div>
  <div class="tile"><p class="k">objet</p><p class="big">Amazon S3</p><p>Fichiers illimités dans des buckets, accès par URL ou API. Durabilité 99,999999999 % (11 neuf).</p></div>
 </div>
 <div class="grid" style="margin-top:12px">
  <div class="tile"><b>Storage Gateway</b><p>Hybride : tes applis sur site utilisent S3, avec un cache local.</p></div>
- <div class="tile"><b>Snowball Edge</b><p>Une valise de disques envoyée par transporteur : des dizaines de To sans bonne connexion.</p></div>
+ <div class="tile"><b>Elastic Disaster Recovery</b><p>Réplique en continu tes serveurs vers AWS pour redémarrer en minutes après un sinistre.</p></div>
+ <div class="tile w"><b>Snowball Edge</b><p>Appareil physique pour transférer des To hors ligne. Plus proposé aux nouveaux clients depuis le 7 novembre 2025 et absent de la liste 2026, mais encore présent dans de vieilles questions.</p></div>
  <div class="tile"><b>DataSync</b><p>Transfert de fichiers en ligne, automatisé, vers S3, EFS, FSx.</p></div>
  <div class="tile"><b>AWS Backup</b><p>Sauvegardes centralisées de tous les services.</p></div>
 </div></section>
@@ -337,7 +306,7 @@ window.DAYS=[
 <tr><td class="h" style="box-shadow:inset 4px 0 color-mix(in srgb,var(--amber) 15%,var(--accent))">Glacier Flexible Retrieval</td><td>Archive 1 à 2 fois par an</td><td>minutes à 12 h</td><td>≥ 3</td></tr>
 <tr><td class="h" style="box-shadow:inset 4px 0 var(--accent)">Glacier Deep Archive</td><td>Conservation légale 7 à 10 ans, le moins cher</td><td>12 à 48 h</td><td>≥ 3</td></tr>
 </table></div>
-<p class="note" style="margin-top:8px">Les <b>règles de cycle de vie</b> S3 déplacent automatiquement les objets vers une classe plus froide après X jours.</p>
+<p class="note" style="margin-top:8px">Les <b>règles de cycle de vie</b> S3 déplacent automatiquement les objets vers une classe plus froide après X jours, ou les suppriment. À part : <b>S3 Express One Zone</b>, une seule AZ, pour une latence de quelques millisecondes.</p>
 </section>
 
 <section class="card"><h3>Quelle base de données ?</h3><p class="sub">Lis le besoin, trouve le service.</p>
@@ -345,11 +314,12 @@ window.DAYS=[
  <div class="tile"><p class="k">SQL relationnel</p><b>Amazon RDS</b><p>MySQL, PostgreSQL, Oracle, SQL Server… managé. Multi-AZ = haute dispo, read replicas = lecture.</p></div>
  <div class="tile"><p class="k">SQL haute perf</p><b>Amazon Aurora</b><p>Compatible MySQL et PostgreSQL, jusqu’à 5× plus rapide, stockage qui grandit tout seul.</p></div>
  <div class="tile"><p class="k">NoSQL clé-valeur</p><b>Amazon DynamoDB</b><p>Serverless, latence de quelques ms à toute échelle.</p></div>
- <div class="tile"><p class="k">cache</p><b>Amazon ElastiCache</b><p>Cache en mémoire (Redis, Memcached) devant une base.</p></div>
+ <div class="tile"><p class="k">cache</p><b>Amazon ElastiCache</b><p>Cache en mémoire (Valkey, Redis OSS, Memcached) devant une base.</p></div>
  <div class="tile"><p class="k">entrepôt</p><b>Amazon Redshift</b><p>Analytique SQL sur des pétaoctets.</p></div>
  <div class="tile"><p class="k">graphe</p><b>Amazon Neptune</b><p>Relations : réseaux sociaux, recommandations, fraude.</p></div>
  <div class="tile"><p class="k">documents</p><b>Amazon DocumentDB</b><p>JSON, compatible MongoDB.</p></div>
- <div class="tile"><p class="k">migration</p><b>AWS DMS</b><p>Migre une base, la source reste en service pendant la migration.</p></div>
+ <div class="tile"><p class="k">migration</p><b>AWS DMS + SCT</b><p>DMS migre la base, la source reste en service. SCT convertit le schéma vers un autre moteur (ex. Oracle → Aurora PostgreSQL).</p></div>
+ <div class="tile w"><p class="k">choisir</p><b>Base sur EC2 ou managée</b><p>Sur EC2 : contrôle total, mais OS, patchs, sauvegardes et haute dispo pour toi. RDS, Aurora, DynamoDB : AWS s’en charge.</p></div>
 </div></section>
 
 <section class="card"><h3>La chaîne de l’analytique</h3>
@@ -358,7 +328,7 @@ window.DAYS=[
  <div class="st a"><b>S3</b><span>lac de données</span></div><span class="arrow">→</span>
  <div class="st"><b>Glue</b><span>cataloguer, ETL</span></div><span class="arrow">→</span>
  <div class="st"><b>Athena · Redshift · EMR</b><span>SQL sur S3 · entrepôt · Spark/Hadoop</span></div><span class="arrow">→</span>
- <div class="st"><b>QuickSight</b><span>tableaux de bord</span></div>
+ <div class="st"><b>Amazon Quick</b><span>tableaux de bord (ex-QuickSight)</span></div>
 </div>
 <p class="note" style="margin-top:8px">Recherche et analyse de logs : <b>Amazon OpenSearch Service</b>.</p>
 </section>
@@ -372,7 +342,7 @@ window.DAYS=[
  <div class="tile"><p class="k">écouter</p><b>Transcribe</b><p>Parole → texte.</p></div>
  <div class="tile"><p class="k">parler</p><b>Polly</b><p>Texte → parole.</p></div>
  <div class="tile"><p class="k">discuter</p><b>Lex</b><p>Chatbots vocaux et texte.</p></div>
- <div class="tile"><p class="k">chercher</p><b>Kendra</b><p>Recherche intelligente dans des documents.</p></div>
+ <div class="tile"><p class="k">chercher · hors liste 2026</p><b>Kendra</b><p>Recherche intelligente dans des documents.</p></div>
  <div class="tile w"><p class="k">construire</p><b>SageMaker AI</b><p>Créer, entraîner, déployer TES modèles ML.</p></div>
  <div class="tile w"><p class="k">générer</p><b>Amazon Bedrock</b><p>IA générative via API avec des modèles de fondation de plusieurs fournisseurs.</p></div>
  <div class="tile w"><p class="k">assister</p><b>Amazon Q</b><p>Assistant d’IA générative pour le travail et le code.</p></div>
@@ -386,8 +356,12 @@ window.DAYS=[
  <div class="tile"><p class="k">orchestrer</p><b>Step Functions</b><p>Enchaîner des étapes dans un workflow visuel.</p></div>
  <div class="tile"><p class="k">IaC</p><b>CloudFormation</b><p>Infrastructure en modèles YAML/JSON, reproductible. CDK = même chose en code.</p></div>
  <div class="tile"><p class="k">opérer</p><b>Systems Manager</b><p>Patchs de flotte, commandes à distance, Session Manager sans SSH.</p></div>
- <div class="tile"><p class="k">CI/CD</p><b>CodePipeline, CodeBuild, CodeDeploy</b><p>Construire, tester, déployer automatiquement.</p></div>
- <div class="tile"><p class="k">utilisateurs</p><b>WorkSpaces, Connect, SES</b><p>Bureaux virtuels, centre d’appels, envoi d’e-mails.</p></div>
+ <div class="tile"><p class="k">CI/CD</p><b>CodePipeline · CodeBuild</b><p>Pipeline de livraison automatique · compilation et tests managés. CodeDeploy est hors programme.</p></div>
+ <div class="tile"><p class="k">déboguer</p><b>AWS X-Ray</b><p>Trace une requête à travers tes microservices pour trouver la lenteur.</p></div>
+ <div class="tile"><p class="k">accéder</p><b>Console, CLI, SDK, IaC</b><p>Console pour une action ponctuelle. CLI et SDK pour scripter. CloudFormation pour recréer le même environnement à l’identique.</p></div>
+ <div class="tile"><p class="k">métier</p><b>Amazon Connect · Amazon SES</b><p>Centre de contact cloud · envoi d’e-mails depuis une appli.</p></div>
+ <div class="tile"><p class="k">web et mobile</p><b>AWS Amplify</b><p>Créer et héberger une appli web ou mobile full-stack.</p></div>
+ <div class="tile"><p class="k">gouverner</p><b>Service Catalog · Service Quotas</b><p>Catalogue interne de produits approuvés · voir et relever les limites de ton compte.</p></div>
  <div class="tile"><p class="k">objets</p><b>IoT Core</b><p>Connecter des appareils connectés.</p></div>
 </div></section>`,
  traps:["Accès inconnu ou changeant → Intelligent-Tiering. Millisecondes et rare → Glacier Instant Retrieval.","One Zone-IA seulement si les données sont recréables : une seule AZ.","EBS = une instance, une AZ. EFS = partagé entre beaucoup d’instances et d’AZ.","SNS pousse vers plusieurs abonnés. SQS stocke dans une file en attendant le traitement.","SageMaker = tu construis ton modèle. Bedrock = tu utilises des modèles de fondation existants."]},
@@ -408,39 +382,52 @@ window.DAYS=[
  <div class="tile"><b>Tags de répartition des coûts</b><p>Étiquettes (ex. departement=marketing) pour ventiler la facture.</p></div>
  <div class="tile"><b>Moteurs de coût</b><p>Calcul, stockage, transfert de données SORTANT. L’entrant est gratuit.</p></div>
  <div class="tile"><b>Payer moins</b><p>Payer à l’usage, réserver (RI, Savings Plans), payer moins en consommant plus (paliers S3).</p></div>
+ <div class="tile w"><b>Transfert de données</b><p>Entrant : gratuit. Vers Internet : payant. Entre deux Régions : payant. Entre deux AZ d’une même Région : payant aussi. Dans la même AZ en IP privée : gratuit.</p></div>
+ <div class="tile w"><b>Offre gratuite</b><p>Des services toujours gratuits dans des limites (ex. 1 million de requêtes Lambda par mois). Depuis le 15 juillet 2025, les nouveaux comptes reçoivent des crédits (jusqu’à 200 $) au lieu des « 12 mois gratuits ».</p></div>
 </div></section>
 
-<section class="card"><h3>Les plans AWS Support</h3><p class="sub">Grille utilisée dans l’examen CLF-C02. Retiens surtout les temps de réponse et le TAM.</p>
+<section class="card"><h3>Les plans AWS Support</h3><p class="sub">Le guide officiel (version du 29 octobre 2026) utilise la nouvelle gamme. Apprends-la en premier, puis sache reconnaître les anciens noms.</p>
 <div class="tbl-wrap"><table class="m">
-<tr><th></th><th>Accès technique</th><th>Réponse la plus rapide</th><th>Trusted Advisor</th><th>TAM</th></tr>
-<tr><td class="h">Basic<span class="tag">gratuit</span></td><td class="n">non : compte et facturation, docs, re:Post</td><td class="n">non</td><td>contrôles essentiels</td><td class="n">non</td></tr>
-<tr><td class="h">Developer</td><td>e-mail, heures ouvrées</td><td>&lt; 12 h · système altéré</td><td>contrôles essentiels</td><td class="n">non</td></tr>
-<tr><td class="h">Business</td><td class="a">24/7 tél., chat, e-mail</td><td class="a">&lt; 1 h · production en panne</td><td class="a">tous les contrôles</td><td class="n">non</td></tr>
-<tr><td class="h">Enterprise On-Ramp</td><td class="a">24/7</td><td class="a">&lt; 30 min · critique en panne</td><td class="a">tous</td><td class="c">pool de TAM + Concierge</td></tr>
-<tr><td class="h">Enterprise</td><td class="a">24/7</td><td class="a">&lt; 15 min · critique en panne</td><td class="a">tous</td><td class="c">TAM désigné + Concierge</td></tr>
+<tr><th></th><th>Prix de départ</th><th>Accès technique</th><th>Système critique en panne</th><th>TAM</th><th>Trusted Advisor</th></tr>
+<tr><td class="h">Basic<span class="tag">gratuit</span></td><td>0 $</td><td class="n">non : service client compte et facturation 24/7, docs, re:Post</td><td class="n">non</td><td class="n">non</td><td>contrôles essentiels</td></tr>
+<tr><td class="h">Business Support+</td><td>29 $/mois par compte</td><td class="a">24/7 tél., chat, web</td><td class="a">&lt; 30 min</td><td class="n">non</td><td class="a">tous les contrôles</td></tr>
+<tr><td class="h">Enterprise</td><td>5 000 $/mois</td><td class="a">24/7</td><td class="a">&lt; 15 min</td><td class="c">TAM désigné</td><td class="a">tous + Priority</td></tr>
+<tr><td class="h">Unified Operations</td><td>50 000 $/mois</td><td class="a">24/7</td><td class="a">&lt; 5 min</td><td class="c">équipe désignée : TAM, ingénieur, spécialiste facturation</td><td class="a">tous + Priority</td></tr>
 </table></div>
+<p class="note" style="margin-top:8px">Dans les trois plans payants : production en panne &lt; 1 h, production altérée &lt; 4 h, système altéré &lt; 12 h, question générale &lt; 24 h. Le prix réel est le plus élevé entre ce minimum et un pourcentage de ta facture AWS.</p>
 <div class="bars" style="margin-top:14px">
- <div class="bar"><span>Developer</span><div class="tr"><div class="fl w" style="width:100%"></div></div><span class="v">12 h</span></div>
- <div class="bar"><span>Business</span><div class="tr"><div class="fl" style="width:8.3%"></div></div><span class="v">1 h</span></div>
- <div class="bar"><span>Enterprise On-Ramp</span><div class="tr"><div class="fl" style="width:4.2%"></div></div><span class="v">30 min</span></div>
- <div class="bar"><span>Enterprise</span><div class="tr"><div class="fl g" style="width:2.1%"></div></div><span class="v">15 min</span></div>
+ <div class="bar"><span>Business Support+</span><div class="tr"><div class="fl w" style="width:100%"></div></div><span class="v">30 min</span></div>
+ <div class="bar"><span>Enterprise</span><div class="tr"><div class="fl" style="width:50%"></div></div><span class="v">15 min</span></div>
+ <div class="bar"><span>Unified Operations</span><div class="tr"><div class="fl g" style="width:16.7%"></div></div><span class="v">5 min</span></div>
 </div>
-<p class="note" style="margin-top:8px">Barres = délai de réponse le plus court, à l’échelle (12 h = barre pleine).</p>
-<div class="tile w" style="margin-top:14px"><p class="k">nouveauté AWS, décembre 2025</p><b>Nouvelle gamme de plans</b><p>AWS a annoncé <b>Business Support+</b> (dès 29 $/mois, réponse en 30 min pour un cas critique), <b>Enterprise</b> (dès 5 000 $/mois, TAM désigné, 15 min) et <b>Unified Operations</b> (dès 50 000 $/mois, 5 min). Developer, Business classique et Enterprise On-Ramp sont maintenus jusqu’au 1er janvier 2027. Les questions de l’examen CLF-C02 suivent encore souvent l’ancienne grille ci-dessus : apprends-la en priorité, et retiens les nouveaux noms au cas où.</p></div>
+<p class="note" style="margin-top:8px">Barres = délai pour un système critique en panne, à l’échelle (30 min = barre pleine).</p>
+<div class="tile w" style="margin-top:14px"><p class="k">ancienne grille · retirée le 1er janvier 2027</p><b>Developer, Business, Enterprise On-Ramp</b><p>Beaucoup de cours et de banques de questions l’utilisent encore. Si une question cite ces noms, réponds avec cette grille.</p></div>
+<div class="tbl-wrap" style="margin-top:10px"><table class="m">
+<tr><th>Ancien plan</th><th>Accès technique</th><th>Réponse la plus rapide</th><th>TAM</th></tr>
+<tr><td class="h">Developer</td><td>e-mail, heures ouvrées</td><td>&lt; 12 h · système altéré</td><td class="n">non</td></tr>
+<tr><td class="h">Business</td><td class="a">24/7 tél., chat, e-mail</td><td class="a">&lt; 1 h · production en panne</td><td class="n">non</td></tr>
+<tr><td class="h">Enterprise On-Ramp</td><td class="a">24/7</td><td class="a">&lt; 30 min · critique en panne</td><td class="c">pool de TAM + Concierge</td></tr>
+<tr><td class="h">Enterprise</td><td class="a">24/7</td><td class="a">&lt; 15 min · critique en panne</td><td class="c">TAM désigné + Concierge</td></tr>
+</table></div>
+<p class="note" style="margin-top:8px">Ce qui ne change pas d’une grille à l’autre : Basic est gratuit et sans support technique ; TAM désigné → Enterprise ; tous les contrôles Trusted Advisor → dès le premier plan 24/7 (Business Support+, ou Business dans l’ancienne grille).</p>
 </section>
 
 <section class="card"><h3>Trusted Advisor et l’écosystème</h3>
 <div class="grid">
  <div class="tile"><p class="k">Trusted Advisor</p><b>6 catégories</b><p>Optimisation des coûts, performance, sécurité, tolérance aux pannes, quotas de service, excellence opérationnelle.</p></div>
- <div class="tile"><b>AWS Health Dashboard</b><p>Événements AWS (maintenance, pannes) qui touchent TES ressources.</p></div>
- <div class="tile"><b>AWS Marketplace</b><p>Acheter des logiciels tiers, facturés sur ta facture AWS.</p></div>
- <div class="tile"><b>AWS Partner Network</b><p>Trouver des sociétés partenaires (conseil, intégration).</p></div>
+ <div class="tile"><b>AWS Health Dashboard</b><p>Événements AWS (maintenance, pannes) qui touchent TES ressources. En programme : AWS Health API (plans payants).</p></div>
+ <div class="tile"><b>AWS Marketplace</b><p>Logiciels tiers facturés sur ta facture AWS, avec gestion des coûts, de la gouvernance et des droits de licence.</p></div>
+ <div class="tile"><b>AWS Partner Network</b><p>Éditeurs (ISV) et intégrateurs (SI). Avantages partenaires : formations et certifications, événements, remises sur volume.</p></div>
  <div class="tile"><b>AWS re:Post</b><p>Questions-réponses communautaires, gratuit.</p></div>
  <div class="tile"><b>Professional Services</b><p>Experts AWS pour accompagner de gros projets.</p></div>
- <div class="tile"><b>Concierge</b><p>Experts facturation et compte (Enterprise et On-Ramp).</p></div>
+ <div class="tile"><b>Concierge</b><p>Ancienne grille : experts facturation et compte (Enterprise et On-Ramp). Unified Operations : un spécialiste facturation désigné.</p></div>
  <div class="tile"><b>Trust &amp; Safety</b><p>Signaler un abus venant de ressources AWS.</p></div>
+ <div class="tile"><b>Solutions architects</b><p>Experts AWS qui conseillent sur l’architecture, souvent via ton équipe de compte.</p></div>
+ <div class="tile"><b>Prescriptive Guidance</b><p>Stratégies, guides et modèles validés par AWS pour migrer et moderniser.</p></div>
+ <div class="tile"><b>Support Center</b><p>Dans la console : ouvrir et suivre tes cas de support.</p></div>
+ <div class="tile"><b>Knowledge Center</b><p>Articles qui répondent aux questions les plus fréquentes des clients.</p></div>
 </div></section>`,
- traps:["Estimer AVANT de déployer → Pricing Calculator. Analyser le PASSÉ → Cost Explorer. Être ALERTÉ → Budgets.","Le moins cher avec accès 24/7 → Business. TAM désigné → Enterprise. 30 min → Enterprise On-Ramp.","Tous les contrôles Trusted Advisor dès le plan Business.","Le transfert de données ENTRANT est gratuit, le SORTANT est payant."]},
+ traps:["Estimer AVANT de déployer → Pricing Calculator. Analyser le PASSÉ → Cost Explorer. Être ALERTÉ → Budgets.","Gamme actuelle : le moins cher avec accès 24/7 → Business Support+ (30 min pour un système critique). TAM désigné au plus bas prix → Enterprise. 5 min → Unified Operations.","Ancienne grille : 30 min → Enterprise On-Ramp, e-mail en heures ouvrées → Developer. Ces plans disparaissent le 1er janvier 2027.","Tous les contrôles Trusted Advisor dès Business Support+ (ancienne grille : dès Business).","Transfert entre deux AZ de la même Région : payant. Dans la même AZ en IP privée : gratuit.","Le transfert de données ENTRANT est gratuit, le SORTANT est payant."]},
 
 {n:7,short:"Examen blanc",title:"Révision finale et examen blanc",dom:0,time:"≈ 4 h",
  lede:"Les paires qui piègent, la tactique du jour J, puis l’examen blanc chronométré dans les conditions réelles : 65 questions, 90 minutes, répartition officielle des domaines.",
@@ -462,6 +449,9 @@ window.DAYS=[
 <tr><td>flexible : famille, Région, Fargate, Lambda</td><td class="a">Compute Savings Plans</td><td>Reserved Instances (liées)</td></tr>
 <tr><td>estimer avant de construire</td><td class="a">Pricing Calculator</td><td>Cost Explorer (le passé)</td></tr>
 <tr><td>même code, base managée</td><td class="a">Replatform</td><td>Rehost (tel quel), Refactor (réécrire)</td></tr>
+<tr><td>24/7 au plus bas prix (gamme actuelle)</td><td class="a">Business Support+</td><td>Enterprise (TAM désigné), Basic (pas de support technique)</td></tr>
+<tr><td>accès privé à un service, sans Internet</td><td class="a">VPC endpoint / PrivateLink</td><td>NAT gateway (sortie vers Internet)</td></tr>
+<tr><td>convertir un schéma Oracle vers PostgreSQL</td><td class="a">AWS SCT</td><td>DMS seul (déplace les données)</td></tr>
 <tr><td>équipe DDoS 24/7, protection des coûts</td><td class="a">Shield Advanced</td><td>Shield Standard (gratuit)</td></tr>
 </table></div></section>
 
@@ -474,7 +464,8 @@ window.DAYS=[
  <div class="tile"><p class="k">5</p><b>Marque et avance</b><p>Bloqué plus de 90 s ? Marque la question, reviens à la fin.</p></div>
  <div class="tile"><p class="k">6</p><b>Doute ?</b><p>AWS préfère souvent le service managé ou serverless, et le moindre privilège.</p></div>
 </div>
-<p class="note" style="margin-top:10px">15 des 65 questions ne comptent pas (questions en test), mais tu ne sais pas lesquelles : traite-les toutes sérieusement.</p>
+<p class="note" style="margin-top:10px">15 des 65 questions ne comptent pas (questions en test), mais tu ne sais pas lesquelles : traite-les toutes sérieusement. Le score est compensatoire : tu peux rater un domaine et réussir l’examen.</p>
+<p class="note" style="margin-top:6px">Listés hors programme dans le guide 2026 : Wavelength, Network Firewall, FSx for Lustre, CodeDeploy, Transfer Family, AWS IQ. Absents de la liste mais encore vus dans de vieilles questions : Snow Family, DataSync, Audit Manager, Kendra.</p>
 </section>`,
  traps:["Toujours vérifier « Choisis 2 » avant de valider.","« Le moins d’effort opérationnel » pointe presque toujours vers un service managé ou serverless."]}
 ];

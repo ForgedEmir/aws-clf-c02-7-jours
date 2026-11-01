@@ -13,7 +13,6 @@ const CBY = Object.fromEntries(CARDS.map(c => [c.id, c]));
 const DOMS = { 1: "Concepts du cloud", 2: "Sécurité et conformité", 3: "Technologie et services", 4: "Facturation, prix et support" };
 const WEIGHT = { 1: 24, 2: 30, 3: 34, 4: 12 };
 const DAYDOM = { 1: 1, 2: 2, 3: 2, 4: 3, 5: 3, 6: 4 };
-const ROMAN = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii"];
 const INTERVAL = [0, 1, 2, 3, 5, 8];          // jours avant la prochaine révision, par boîte de Leitner
 const MOCK_N = { 1: 16, 2: 19, 3: 22, 4: 8 };  // 65 questions, répartition officielle 24 / 30 / 34 / 12 %
 const MOCK_MIN = 90;
@@ -31,13 +30,18 @@ function touch() { const t = today(); if (!S.days.includes(t)) S.days.push(t); }
 /* ---------- Progression ---------- */
 const KEY = "clf-c02-7j";
 /* Le jour 1 est le jour de la première visite, jamais avant la date de lancement (modifiable dans Ressources). */
-const LAUNCH = "2026-10-28";
-const fresh = () => ({ v: 2, start: today() > LAUNCH ? today() : LAUNCH, checks: {}, best: {}, wrong: [], mocks: [], seen: {}, cards: {}, days: [], mock: null, match: { rounds: 0, perfect: 0 } });
+const LAUNCH = "2026-11-01";
+const fresh = () => ({ v: 3, start: today() > LAUNCH ? today() : LAUNCH, checks: {}, best: {}, wrong: [], mocks: [], seen: {}, cards: {}, days: [], mock: null, match: { rounds: 0, perfect: 0 } });
 let S = load();
 function load() {
   try {
     const r = localStorage.getItem(KEY);
-    if (r) { const s = Object.assign(fresh(), JSON.parse(r)); if (s.v < 2) { if (s.start === "2026-10-27") s.start = LAUNCH; s.v = 2; } return s; }
+    // v3 : le programme repart au 1er novembre (jour 1) pour finir le 8 ; les scores sont gardés.
+    if (r) {
+      const s = Object.assign(fresh(), JSON.parse(r));
+      if (s.v < 3) { if (s.start < LAUNCH) s.start = LAUNCH; s.v = 3; localStorage.setItem(KEY, JSON.stringify(s)); }
+      return s;
+    }
   } catch (e) {}
   const s = fresh();
   try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {}
@@ -73,13 +77,24 @@ function newCards(n) { return deckCards(n).filter(c => !S.cards[c.id]); }
 /* ---------- Navigation ---------- */
 const VIEWS = ["programme", "entrainement", "fiches", "associer", "examen", "erreurs", "progres", "ressources"];
 function route() {
+  closeMore();
   const h = (location.hash || "").slice(1);
   VIEW = (VIEWS.includes(h) || /^j[1-7]$/.test(h)) ? h : "programme";
   QZ = null; FL = null; MT = null; UI.confirm = false; UI.resetAsk = false;
   render();
   window.scrollTo(0, 0);
 }
-function link(v, label, extra, cls) { return `<a class="nv${cls ? " " + cls : ""}${VIEW === v ? " on" : ""}" href="#${v}">${label}${extra || ""}</a>`; }
+function link(v, label, extra, cls) { return `<a class="nv${cls ? " " + cls : ""}${VIEW === v ? " on" : ""}" href="#${v}"${VIEW === v ? ' aria-current="page"' : ""}>${label}${extra || ""}</a>`; }
+const navIcon = name => {
+  const paths = { programme: '<rect x="4" y="4" width="16" height="17" rx="3"/><path d="M8 2v4m8-4v4M4 10h16m-11 4h6m-6 3h4"/>', entrainement: '<path d="m14 2-9 12h7l-2 8 9-12h-7z"/>', fiches: '<rect x="6" y="6" width="14" height="16" rx="3"/><path d="M16 2H6a4 4 0 0 0-4 4v12m8-6h6m-6 4h4"/>', examen: '<circle cx="12" cy="13" r="8"/><path d="M12 9v5l3 2M9 2h6m-3 0v3"/>', plus: '<circle cx="12" cy="12" r="9"/><path d="M7 12h.01M12 12h.01M17 12h.01"/>' };
+  return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">${paths[name]}</svg>`;
+};
+function closeMore() { const sheet = $("#more-sheet"); if (sheet && sheet.open) sheet.close(); }
+function openMore() {
+  const sheet = $("#more-sheet");
+  sheet.innerHTML = `<div class="between"><h2>Toutes les rubriques</h2><button class="btn ghost" data-nav-close aria-label="Fermer les rubriques">Fermer</button></div><div class="sheet-links">${link("programme", "Programme")}${DAYS.map(d => link("j" + d.n, `Jour ${d.n} · ${d.short}`)).join("")}${[["entrainement", "S’entraîner"], ["fiches", "Fiches"], ["associer", "Associer"], ["examen", "Examen blanc"], ["erreurs", "Mes erreurs"], ["progres", "Progrès"], ["ressources", "Ressources"]].map(x => link(x[0], x[1])).join("")}</div>`;
+  sheet.showModal();
+}
 function renderSide() {
   const t = todayN();
   const days = DAYS.map(D => {
@@ -92,6 +107,11 @@ function renderSide() {
   <div class="navg"><span class="h">S’entraîner</span>${link("entrainement", "Entraînement")}${link("fiches", "Fiches", due ? `<span class="c">${due}</span>` : "")}${link("associer", "Associer")}${link("examen", "Examen blanc", S.mock ? '<span class="live">en cours</span>' : "")}${link("erreurs", "Erreurs", S.wrong.length ? `<span class="c">${S.wrong.length}</span>` : "")}</div>
   <div class="navg"><span class="h">Suivi</span>${link("progres", "Progrès")}${link("ressources", "Ressources")}</div>
   <p class="foot">Questions originales, non officielles. Progression gardée dans ce navigateur.<br><a href="${REPO}" target="_blank" rel="noopener">Code source</a></p>`;
+  const primary = [["programme", "Programme"], ["entrainement", "S’entraîner"], ["fiches", "Fiches"], ["examen", "Examen"]];
+  $("#tabs").innerHTML = primary.map(([v, label]) => {
+    const active = VIEW === v || (v === "programme" && /^j[1-7]$/.test(VIEW));
+    return `<a href="#${v}"${active ? ' class="on" aria-current="page"' : ""}>${navIcon(v)}<span>${label}</span></a>`;
+  }).join("") + `<button data-nav-more aria-haspopup="dialog"${primary.some(x => x[0] === VIEW) || /^j/.test(VIEW) ? "" : ' class="on"'}>${navIcon("plus")}<span>Plus</span></button>`;
 }
 function render() {
   renderSide();
@@ -100,7 +120,12 @@ function render() {
   else if (/^j[1-7]$/.test(VIEW)) h = vDay(+VIEW[1]);
   else h = ({ entrainement: vPractice, fiches: vCards, associer: vMatch, examen: vExam, erreurs: vErrors, progres: vProgress, ressources: vRes })[VIEW]();
   $("#view").innerHTML = h;
-  $$("#lesson > section.card > h3").forEach((el, i) => el.insertAdjacentHTML("afterbegin", `<span class="num">${ROMAN[i] || i + 1}.</span>`));
+  if (window.VIZ) window.VIZ.mount($("#view"));
+  $$(".tbl-wrap,.dia-wrap").forEach(el => {
+    if (el.scrollWidth <= el.clientWidth) return;
+    el.tabIndex = 0; el.setAttribute("role", "region");
+    el.setAttribute("aria-label", (el.matches(".tbl-wrap") ? "Tableau" : "Schéma") + " à faire défiler horizontalement");
+  });
   if (VIEW === "examen" && S.mock) drawMock();
   if (VIEW === "fiches" && FL) drawFlash();
   if (VIEW === "associer") drawMatch();
@@ -450,6 +475,12 @@ function vRes() {
 }
 
 /* ---------- Événements ---------- */
+document.addEventListener("click", e => {
+  if (e.target.closest(".skip")) { e.preventDefault(); $("#view").focus(); window.scrollTo(0, 0); }
+  if (e.target.closest("[data-nav-more]")) openMore();
+  if (e.target.closest("[data-nav-close],#more-sheet a")) closeMore();
+  if (e.target === $("#more-sheet")) { const r = e.target.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) closeMore(); }
+});
 document.addEventListener("click", e => {
   const t = e.target.closest("[data-act],[data-set],[data-oi]");
   if (!t) return;
